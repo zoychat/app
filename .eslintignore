@@ -1,0 +1,8 @@
+node_modules
+web-build
+src-tauri
+.expo
+dist
+babel.config.js
+metro.config.js
+src/app.d.ts

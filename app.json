@@ -1,0 +1,48 @@
+{
+	"expo": {
+		"name": "Zoy",
+		"experiments": {
+			"typedRoutes": true
+		},
+		"slug": "zoy",
+		"version": "0.0.1",
+		"owner": "zoychat",
+		"orientation": "portrait",
+		"icon": "./assets/images/icon.png",
+		"scheme": "zoy",
+		"userInterfaceStyle": "automatic",
+		"splash": {
+			"image": "./assets/images/splash.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"updates": {
+			"fallbackToCacheTimeout": 0
+		},
+		"mode": "development",
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": true,
+			"bundleIdentifier": "com.zoychat.zoy"
+		},
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/images/adaptive-icon.png",
+				"backgroundColor": "#ffffff"
+			},
+			"package": "com.zoychat.zoy"
+		},
+		"web": {
+			"bundler": "metro",
+			"favicon": "./assets/images/favicon.png"
+		},
+		"extra": {
+			"router": {
+				"origin": false
+			},
+			"eas": {
+				"projectId": "bbfdfc60-c914-4bdc-86c6-79c45eca78b6"
+			}
+		}
+	}
+}

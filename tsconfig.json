@@ -1,0 +1,20 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig.json",
+	"extends": "expo/tsconfig.base",
+	"include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"],
+	"compilerOptions": {
+		"strict": true,
+		"composite": true,
+		"skipLibCheck": true,
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"allowSyntheticDefaultImports": true,
+		"baseUrl": "./",
+		"paths": {
+			"~app/*": ["src/app/*"],
+			"~components/*": ["src/components/*"],
+			"~lib/*": ["src/lib/*"],
+			"~util/*": ["src/util/*"]
+		}
+	}
+}
