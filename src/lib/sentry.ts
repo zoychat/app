@@ -25,11 +25,7 @@ Sentry.init({
 });
 
 export function getSentryClient() {
-	if (isWeb) {
-		return Sentry.Browser;
-	}
-
-	return Sentry.Native;
+	return isWeb ? Sentry.Browser : Sentry.Native;
 }
 
 export function withSentry(Component: FC) {

@@ -1,19 +1,13 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import {
-	Inter_400Regular,
-	Inter_600SemiBold,
-	Inter_700Bold,
-	Inter_800ExtraBold,
-	useFonts,
-} from '@expo-google-fonts/inter';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
 import { SplashScreen as ExpoSplashScreen, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { NativeWindStyleSheet, useColorScheme } from 'nativewind';
 import { useEffect, useState } from 'react';
-import { RootSiblingParent } from 'react-native-root-siblings';
 import { withSentry } from '~lib/sentry';
 import { FONT_LOAD_DELAY, SCREEN_TRANSITION_DELAY } from '~util/constants';
+import { Providers } from './providers';
+
+import('@tamagui/core/reset.css');
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -21,16 +15,12 @@ export const unstable_settings = {
 	initialRouteName: '(tabs)',
 };
 
-NativeWindStyleSheet.setOutput({
-	default: 'native',
-});
-
 function RootLayout() {
 	const [loaded, error] = useFonts({
-		Inter_400Regular,
-		Inter_600SemiBold,
-		Inter_700Bold,
-		Inter_800ExtraBold,
+		// eslint-disable-next-line @typescript-eslint/no-require-imports
+		Inter: require('@tamagui/font-inter/otf/Inter-Medium.otf'),
+		// eslint-disable-next-line @typescript-eslint/no-require-imports
+		InterBold: require('@tamagui/font-inter/otf/Inter-Bold.otf'),
 		...FontAwesome.font,
 	});
 
@@ -39,8 +29,6 @@ function RootLayout() {
 		isDelayOver: false,
 		screenReady: false,
 	});
-
-	const { colorScheme } = useColorScheme();
 
 	useEffect(() => {
 		if (loaded) {
@@ -72,19 +60,18 @@ function RootLayout() {
 	}, [appState.isDelayOver]);
 
 	if (!loaded || !appState.isDelayOver) {
-		return <ExpoSplashScreen />;
+		return null;
 	}
 
 	if (appState.screenReady) {
 		return (
-			<ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-				<RootSiblingParent>
-					<Stack screenOptions={{ headerShown: false }}>
-						<Stack.Screen name="(root)" />
-					</Stack>
-					<StatusBar />
-				</RootSiblingParent>
-			</ThemeProvider>
+			<Providers>
+				<Stack screenOptions={{ headerShown: false }}>
+					<Stack.Screen name="(root)" />
+				</Stack>
+
+				<StatusBar />
+			</Providers>
 		);
 	}
 }

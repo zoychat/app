@@ -1,23 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
-import { useColorScheme } from 'nativewind';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Button } from '~components/Button';
-import { ExternalLink } from '~components/ExternalLink';
-import { cn } from '~lib/util';
+import { Button, Anchor, useTheme } from 'tamagui';
 
-export default function Index() {
-	const { colorScheme } = useColorScheme();
+export default function Page() {
+	const theme = useTheme();
 
 	return (
 		<SafeAreaView
-			className={cn('flex items-center justify-center h-full', {
-				'bg-black': colorScheme === 'dark',
-				'bg-white': colorScheme === 'light',
-			})}
+			style={{
+				backgroundColor: theme.background.val,
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'center',
+				height: '100%',
+			}}
 		>
-			<ExternalLink href="https://github.com/zoychat">
-				<Button label="GitHub" />
-			</ExternalLink>
+			<Anchor textDecorationLine="none" href="https://github.com/zoychat" target="_blank">
+				<Button size="$6">GitHub</Button>
+			</Anchor>
 
 			<StatusBar />
 		</SafeAreaView>

@@ -7,6 +7,8 @@ const config = getDefaultConfig(__dirname, {
 	isCSSEnabled: true,
 });
 
-config.resolver.sourceExts = [...config.resolver.sourceExts, 'mjs', 'cjs'];
+// Expo 49 issue: default metro config needs to include "mjs"
+// https://github.com/expo/expo/issues/23180
+config.resolver.sourceExts.push('mjs', 'cjs');
 
 module.exports = config;
